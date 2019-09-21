@@ -1,10 +1,8 @@
 package edu.nyu.cs9053.homework3.oo;
-
 import java.io.*;
-import edu.nyu.cs9053.homework3.oo.*;
 
 /**
- *User: Hongjian Su
+ *Creator: Hongjian Su
  *Date: Sep. 20
  */
 public class AsciiArt{
@@ -24,6 +22,8 @@ public class AsciiArt{
     private char[][] toArt(String arg){
 	switch(arg)
 	{
+	case "0":
+	    return letter0();
 	case "1":
 	    return letter1();
         case "2":
@@ -100,6 +100,27 @@ public class AsciiArt{
 	    return temp;
 	}
     }   
+
+    private char[][] letter0(){
+        for(int i = 0, j = 10, k = 10; i < 10; i++){
+	    if(i == 0 || i == 9){
+		temp[i][8] = '0';
+		temp[i][10] = '0';
+		temp[i][12] = '0';
+	    }
+	    if(i < 3){
+		j -= 2;
+		k += 2;
+	    }
+	    else if(i > 7){
+		j += 2;
+		k -= 2;
+	    }
+	    temp[i][j] = '0';
+	    temp[i][k] = '0';
+	}
+        return temp;
+    }
 
     private char[][] letter1(){
 	for(int i = 0; i < 10; i++){
@@ -524,52 +545,159 @@ public class AsciiArt{
     }
 
    private char[][] letterQ(){
-	
-	return temp;
+       for(int i = 0, j = 10, k = 10; i < 10; i++){
+           if(i == 0 || i == 9){
+               temp[i][10] = 'Q';
+           }
+	   if(i == 7){
+	       temp[i][k-6] = 'Q';
+	   }
+	   if(i == 9){
+	       temp[i][k+2] = 'Q';
+	   }
+           if(i < 4){
+               j -= 2;
+               k += 2;
+	   }
+           else if(i > 6){
+               j += 2;
+               k -= 2;
+           }
+           temp[i][j] = 'Q';
+	   temp[i][k] = 'Q';
+       }
+       return temp;
     }
 
    private char[][] letterR(){
-	
+       for(int i = 0, j = 10; i < 10; i++){
+           temp[i][10] = 'R';
+           if(i < 3){
+               j += 3;
+           }
+           else if(i < 6 && i > 3){
+               j -= 3;
+           }
+	   else if(i > 6 && i < 9){
+	       j += 3;
+	   }
+           temp[i][j] = 'R';
+       }
 	return temp;
     }
 
    private char[][] letterS(){
-	
+       for(int i = 0, j = 10; i < 10; i++){
+	   if(i == 0 || i == 4 || i == 9){
+	       temp[i][8] = 'S';
+	       temp[i][10] = 'S';
+	       temp[i][12] = 'S';
+	   }
+	   if(i == 8){
+	       temp[i][6] = 'S';
+	   }
+	   if(i < 3 || i > 7){
+	       j -= 2;
+	   }
+	   else if(i == 4){
+	       j += 6;
+	   }
+	   else if(i < 7){
+	       j += 2;
+	   }
+	   temp[i][j] = 'S';
+       }
 	return temp;
     }
 
    private char[][] letterT(){
-	
+       for(int i = 0; i < 10; i++){
+	   temp[i][10] = 'T';
+	   if(i == 0){
+	       for(int m = 4; m < 18; m+=2){
+		   temp[i][m] = 'T';
+	       }
+	   }
+       }
 	return temp;
     }
 
    private char[][] letterU(){
-	
+       for(int i = 0, j = 4, k = 16; i < 10; i++){
+	   if(i == 9){
+	       temp[i][10] = 'U';
+	   }
+	   if(i > 7){
+	       j += 2;
+	       k -= 2;
+	   }
+	   temp[i][j] = 'U';
+	   temp[i][k] ='U';
+       }
 	return temp;
     }
 
    private char[][] letterV(){
-	
+       for(int i = 0, j = 0, k = 20; i < 10; i++){
+	   j++;
+	   k--;
+	   temp[i][j] = 'V';
+	   temp[i][k] = 'V';
+       }
 	return temp;
     }
 
    private char[][] letterW(){
-	
+       for(int i = 0, j = 4, k = 16; i < 10; i+=2){
+	   temp[i][j] = 'W';
+	   temp[i][k] = 'W';
+	   j++;
+	   k--;
+	   if(i > 2){
+	       temp[i][(8-j)+8] = 'W';
+	       temp[i][12-(k-12)] = 'W';
+	   }
+       }
 	return temp;
     }
 
    private char[][] letterX(){
-	
+       for(int i = 0, j = 6, k = 14; i < 10; i++){
+	   temp[i][j] = 'X';
+	   temp[i][k] = 'X';
+	   j++;
+	   k--;
+       }
 	return temp;
     }
 
    private char[][] letterY(){
-	
+       for(int i = 0, j = 2, k = 18; i < 10; i++){
+	   if(i < 4){
+	       temp[i][j] = 'Y';
+	       temp[i][k] = 'Y';
+	       j += 2;
+	       k -= 2;
+	   }
+	   else{
+	       temp[i][10] = 'Y';
+	   }
+       }
 	return temp;
     }
 
    private char[][] letterZ(){
-	
+       for(int i = 0, j = 14; i < 10; i++){
+	   if(i == 0 || i == 9){
+	       for(int m = 7; m <= 15; m+=2){
+		   temp[i][m] = 'Z';
+	       }
+	   }
+	   else{
+	       temp[i][j] = 'Z';
+	       j--;
+	   }
+       }
 	return temp;
     }
 

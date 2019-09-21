@@ -1,9 +1,8 @@
 package edu.nyu.cs9053.homework3.oo;
-
 import java.io.*;
 
 /**
- *User: Hongjian Su
+ *Creator: Hongjian Su
  *Date: Sep. 20
  */
 public class Letter{
