@@ -2,23 +2,39 @@ package edu.nyu.cs9053.homework3.oo;
 import java.io.*;
 
 /**
- *Creator: Hongjian Su
- *Date: Sep. 20
+ * A {@code AsciiArt} object represents a graphic of {@literal an ASCII character}, also an array char[10][20]
+ * Dependent classes: {@link Letter}
+ * Supported {@literal ASCII characters}: 0~9, A~Z
+ * @author Hongjian Su
+ * @version 1.0
  */
 public class AsciiArt{
     
-    private final char[][] art;
+    private final char[][] artArray;
     
-    private char[][] temp = new char[10][20];
+    private char[][] temp = new char[10][20];   //a temporary array for building a graphic.
 
+    /**
+     * Construct a {@code AsciiArt} object
+     * @param the first command line argument, {@literal an ASCII character}
+     * Initialize {@code this.art}
+     */
     public AsciiArt(String arg){
-	this.art = toArt(arg);
+	this.artArray = toArt(arg);
     }
 
+    /**
+     * @return the art-array of an object
+     */
     public char[][] getArt(){
-	return this.art;
+	return this.artArray;
     }
 
+    /**
+     * Transform a {@literal ASCII character} to a graphic array of char[10][20]
+     * @param the first command line argument, {@literal an ASCII character}
+     * @return an transformed graphic array
+     */
     private char[][] toArt(String arg){
 	switch(arg)
 	{
@@ -94,13 +110,17 @@ public class AsciiArt{
             return letterY();
         case "Z":
             return letterZ();
-	default:
+	default:   //if the input is not in 0-9 or A-Z, then print error message and exit current program.
 	    System.out.println("unknown character");
             System.exit(1);
 	    return temp;
 	}
     }   
 
+    /**
+     * the following methods are the implementation of transformation from {@literal a ASCII character} to {@literal the corresponding graphic array}
+     * @return the corresponding graphic array of {@literal a ASCII character}
+     */
     private char[][] letter0(){
         for(int i = 0, j = 10, k = 10; i < 10; i++){
 	    if(i == 0 || i == 9){
@@ -702,15 +722,18 @@ public class AsciiArt{
     }
 
 
+    /**
+     * Test the print function of {@literal Ascii art}
+     * @param args[0] the first command line argument
+     */
     public static void main(String[] args){
-        char[][] art = new char[10][20];
+        char[][] artArray = new char[10][20];
         AsciiArt letterArt = new AsciiArt(args[0]);
-        art = letterArt.getArt();
-	Letter su = new Letter(art, new PrintStream(System.out));
-	PrintStream output = su.print();
+        artArray = letterArt.getArt();
+	Letter letter = new Letter(artArray, new PrintStream(System.out));
+	PrintStream output = letter.print();
       	output.flush();
 	output.close();
-        System.out.println(art[0][10]);
     }
 
 }
